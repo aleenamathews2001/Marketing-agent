@@ -1024,7 +1024,8 @@
         "defaultValue": "3 - Marketing email",
         "picklistValues": [
           "3 - Marketing email",
-          "4 - Vicennium Celebration"
+          "4 - Vicennium Celebration",
+          " 5 - AI Innovation Email"
         ]
       },
       {
