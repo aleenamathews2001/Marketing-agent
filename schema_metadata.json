@@ -1,0 +1,1729 @@
+[
+  {
+    "object": "Account",
+    "description": "An Account represents a company, individual, or another entity associated with your organization. It serves as a central repository for tracking customer data, managing business interactions, and integrating other records like contracts, opportunities, and related activities. The Account object is critical for establishing long-term relationships, sales cycles, and ensuring personalized engagement based on business metrics and attributes.",
+    "fields": [
+      {
+        "apiname": "Name",
+        "description": "The name of the account. This field is essential for identifying and referencing the account across all business processes and reports. It is used in customer-related reports and helps in differentiating one account from another within the organization\u2019s Salesforce system.",
+        "datatype": "Text(255)",
+        "FieldLabel": "Name"
+      },
+      {
+        "apiname": "AccountNumber",
+        "description": "A unique identifier for the account, usually assigned by the organization for internal purposes. This helps in referencing the account within Salesforce for reporting, contract management, and ensuring that any activity related to the account is easily traceable across multiple systems.",
+        "datatype": "Text(40)",
+        "FieldLabel": "Account Number"
+      },
+      {
+        "apiname": "RecordTypeId",
+        "description": "This field defines the type of account within Salesforce, distinguishing between types such as customers, partners, prospects, or others. It allows the organization to tailor business processes, reporting, and workflows based on the nature of the account.",
+        "datatype": "Record Type",
+        "FieldLabel": "Record Type Id"
+      },
+      {
+        "apiname": "Site",
+        "description": "The physical location or site associated with the account. This could include the address of an office, manufacturing facility, or retail store. The location might influence business decisions, such as product distribution, regional pricing, or customized offerings based on the site\u2019s specific needs.",
+        "datatype": "Text(80)",
+        "FieldLabel": "Site"
+      },
+      {
+        "apiname": "AccountSource",
+        "description": "Indicates the origin of the account, such as through a referral, marketing campaign, or inbound inquiry. Tracking the source of an account is vital for analyzing the effectiveness of different lead-generation channels and strategies, providing valuable insights into the ROI of marketing activities.",
+        "datatype": "Picklist",
+        "picklistValues": [
+          "Advertisement",
+          "Employee Referral",
+          "External Referral",
+          "Partner",
+          "Public Relations",
+          "Seminar - Internal",
+          "Seminar - Partner",
+          "Trade Show",
+          "Web",
+          "Word of mouth",
+          "Other"
+        ],
+        "FieldLabel": "Account Source"
+      },
+      {
+        "apiname": "AnnualRevenue",
+        "description": "The total annual revenue of the account, expressed in the specified currency. This metric helps in determining the size and financial potential of the account. Higher annual revenue might influence business strategies, contract terms, and discounting decisions during contract renewals or new deals.",
+        "datatype": "Currency(18, 0)",
+        "FieldLabel": "Annual Revenue"
+      },
+      {
+        "apiname": "BillingAddress__c",
+        "description": "This formula field stores the account's billing address as a text string, which might be useful for automation, processing, or reporting purposes. It consolidates address information from multiple fields and presents it as a single, easily-accessible value. This field is especially important for invoicing, billing cycles, and contract renewals where the billing address is critical.",
+        "datatype": "Formula (Text)",
+        "FieldLabel": "Billing Address"
+      },
+      {
+        "apiname": "BillingAddress",
+        "description": "The complete billing address associated with the account, including street, city, state, and postal code. This field is crucial for invoicing, delivering physical goods or services, and providing proper shipping and billing instructions. It is also used for generating reports and analytics related to sales performance and business activity by location.",
+        "datatype": "Address",
+        "FieldLabel": "Billing Address"
+      },
+      {
+        "apiname": "ChannelProgramLevelName",
+        "description": "The level within the channel program that the account is associated with. For example, it could indicate whether the account is part of a bronze, silver, or gold tier. This categorization helps in determining how different levels of customers are treated in terms of discounts, access to exclusive offers, and the level of customer support they receive.",
+        "datatype": "Text(255)",
+        "FieldLabel": "Channel Program Level Name"
+      },
+      {
+        "apiname": "ChannelProgramName",
+        "description": "The name of the specific channel program associated with the account. This program might offer the account access to specific incentives, rebates, or partner opportunities. Tracking this allows the business to segment accounts based on their involvement in different channel programs and optimize the renewal or upsell process accordingly.",
+        "datatype": "Text(255)",
+        "FieldLabel": "Channel Program Name"
+      },
+      {
+        "apiname": "IsCustomerPortal",
+        "description": "Indicates whether the account is enabled for portal access. If true, the account has the ability to manage certain interactions, such as reviewing contracts, submitting support tickets, or accessing account-related data, through a secure, self-service portal. This is particularly important for accounts that prefer managing their engagement independently or are involved in complex contract renewals.",
+        "datatype": "Checkbox",
+        "FieldLabel": "Is Customer Portal"
+      },
+      {
+        "apiname": "Jigsaw",
+        "description": "A unique identifier for the account within Data.com (formerly Jigsaw). This identifier can be used to link and enrich account data by pulling in additional information from external sources, providing a more complete profile of the account for strategic decision-making and outreach.",
+        "datatype": "Text(20)",
+        "FieldLabel": "Jigsaw"
+      },
+      {
+        "apiname": "Description",
+        "description": "A long-form text field that provides detailed information about the account\u2019s business, operations, history, or other pertinent context. This description can help internal teams understand the nuances of working with the account, including any specific conditions or considerations for contract renewals or business development.",
+        "datatype": "Long Text Area(32000)",
+        "FieldLabel": "Description"
+      },
+      {
+        "apiname": "Tier",
+        "description": "This field denotes the tier or classification of the account, which can have a significant impact on how business processes are managed. Tiers may be based on the account's business size, importance, or strategic alignment with the organization. For example, enterprise-level accounts might receive customized services or pricing, while smaller accounts may follow standardized procedures.",
+        "datatype": "Text(2)",
+        "FieldLabel": "Tier"
+      },
+      {
+        "apiname": "NumberOfEmployees",
+        "description": "The total number of employees at the account\u2019s business location. Larger accounts may have more complex business needs, requiring tailored solutions and contracts. This metric also helps in understanding the scale of the account's operations and its potential for additional business opportunities or contract renewals.",
+        "datatype": "Number(8, 0)",
+        "FieldLabel": "Number Of Employees"
+      },
+      {
+        "apiname": "Fax",
+        "description": "The fax number associated with the account. While not commonly used in modern business, fax numbers might still be relevant for certain contracts, communications, or legal documentation processes that require physical document transmission, especially for industries that still rely on fax as a secure method of communication.",
+        "datatype": "Fax",
+        "FieldLabel": "Fax"
+      },
+      {
+        "apiname": "GeoCoordinates__c",
+        "description": "The geographical coordinates (latitude and longitude) of the account\u2019s location. These coordinates are essential for geographic analysis, regional marketing strategies, and logistical purposes, such as managing product deliveries or determining the proximity of other accounts in the same region.",
+        "datatype": "Geolocation",
+        "FieldLabel": "Geo Coordinates"
+      },
+      {
+        "apiname": "GeoLocation__c",
+        "description": "A formula field representing the account's geographical location in textual form. This field is helpful for reporting, analytics, and understanding regional distribution. It could be used in contract renewals or notifications where specific geographic regions trigger certain conditions.",
+        "datatype": "Formula (Text)",
+        "FieldLabel": "Geo Location"
+      },
+      {
+        "apiname": "Industry",
+        "description": "The industry type of the account, selected from a predefined list. Knowing the industry helps in customizing business offerings, understanding market conditions, and predicting the account's needs during contract renewals. It may also impact pricing, product offerings, and the terms of renewal.",
+        "datatype": "Picklist",
+        "picklistValues": [
+          "Agriculture",
+          "Apparel",
+          "Banking",
+          "Biotechnology",
+          "Chemicals",
+          "Communications",
+          "Construction",
+          "Consulting",
+          "Education",
+          "Electronics",
+          "Energy",
+          "Engineering",
+          "Entertainment",
+          "Environmental",
+          "Finance",
+          "Food & Beverage",
+          "Government",
+          "Healthcare",
+          "Hospitality",
+          "Insurance",
+          "Machinery",
+          "Manufacturing",
+          "Media",
+          "Not For Profit",
+          "Other",
+          "Recreation",
+          "Retail",
+          "Shipping",
+          "Technology",
+          "Telecommunications",
+          "Transportation",
+          "Utilities"
+        ],
+        "FieldLabel": "Industry"
+      },
+      {
+        "apiname": "Ownership",
+        "description": "Indicates the ownership structure of the account, whether it\u2019s private, public, or government. This can have a significant impact on the contract renewal terms, with government accounts possibly having specific regulatory compliance needs, while private companies might negotiate differently based on business objectives.",
+        "datatype": "Picklist",
+        "picklistValues": [
+          "Public",
+          "Private",
+          "Subsidiary",
+          "Other"
+        ],
+        "FieldLabel": "Ownership"
+      },
+      {
+        "apiname": "ParentId",
+        "description": "The ID of the parent account, if the current account is part of a larger parent-child relationship. This field is crucial for multi-level accounts, where renewal strategies might differ based on the hierarchical relationship between the accounts, especially in corporate structures.",
+        "datatype": "Hierarchy",
+        "FieldLabel": "Parent Id"
+      },
+      {
+        "apiname": "IsPartner",
+        "description": "Indicates whether the account is a partner organization. Partners may have special business agreements, contracts, or terms that differ from regular customer accounts. This field helps identify strategic relationships and manage renewals or special considerations for those accounts.",
+        "datatype": "Checkbox",
+        "FieldLabel": "Is Partner"
+      },
+      {
+        "apiname": "PaymentTerm__c",
+        "description": "The payment terms associated with the account, such as net 30, net 60, or customized payment schedules. This field is critical for managing financial aspects of the relationship, such as payment cycles and renewal billing schedules. It ensures that the business and customer align on payment expectations.",
+        "datatype": "Picklist",
+        "picklistValues": [
+          "Net 30",
+          "Net 60",
+          "Net 90"
+        ],
+        "FieldLabel": "Payment Term"
+      },
+      {
+        "apiname": "Phone",
+        "description": "The phone number associated with the account, used as a direct communication channel for support, billing inquiries, and contract management. It\u2019s a primary method of contact, particularly for resolving issues related to contract renewals or business matters.",
+        "datatype": "Phone",
+        "FieldLabel": "Phone"
+      },
+      {
+        "apiname": "POICategory__c",
+        "description": "The category of Points of Interest (POI) linked to the account. POIs could include specific business operations, such as retail locations or data centers. Identifying these points helps in creating location-specific contracts or renewal strategies for businesses with multiple facilities or assets.",
+        "datatype": "Picklist",
+        "picklistValues": [
+          "Hotel",
+          "Eatery",
+          "Retailshops",
+          "Healthcare"
+        ],
+        "FieldLabel": "POI Category"
+      },
+      {
+        "apiname": "POI_Image_URL__c",
+        "description": "The URL for an image related to the account\u2019s Points of Interest. This image may be tied to a physical location, event, or other significant business assets that are relevant for business operations, including contract renewals, service agreements, or promotions.",
+        "datatype": "Long Text Area(32768)",
+        "FieldLabel": "POI_ Image_URL"
+      },
+      {
+        "apiname": "POIList__c",
+        "description": "A list of Points of Interest (POIs) associated with the account. This could include facilities, stores, or business locations relevant to the account\u2019s operations. It\u2019s used for location-specific strategies and helps identify assets or locations that may impact the contract renewal process.",
+        "datatype": "Text(20)",
+        "FieldLabel": "POI List"
+      },
+      {
+        "apiname": "POISubCategory__c",
+        "description": "A subcategory under Points of Interest that provides further detail about the type of POI. This helps categorize business locations or assets for more tailored contract management, renewal decisions, or marketing initiatives.",
+        "datatype": "Picklist",
+        "picklistValues": [
+          "5-Star",
+          "4-Star",
+          "3-Star",
+          "Hawker",
+          "Restaurant",
+          "Free Standing Shops",
+          "Hospital",
+          "Healthcare Centers",
+          "CHAS Clinic",
+          "Clinic",
+          "Shopping Mall"
+        ],
+        "FieldLabel": "POI Sub Category"
+      },
+      {
+        "apiname": "PremisesId__c",
+        "description": "The ID of the premises associated with the account, which could be relevant for accounts with physical locations tied to contracts. This helps in managing location-specific services and logistics, which may influence contract renewals or pricing.",
+        "datatype": "Lookup(Premise)",
+        "FieldLabel": "Premises Id"
+      },
+      {
+        "apiname": "Rating",
+        "description": "The rating or assessment assigned to the account based on business criteria. This field helps prioritize accounts for services, identify key renewal opportunities, or decide which accounts need special attention during contract negotiations.",
+        "datatype": "Picklist",
+        "picklistValues": [
+          "hot",
+          "warm",
+          "cold"
+        ],
+        "FieldLabel": "Rating"
+      },
+      {
+        "apiname": "ShippingAddress",
+        "description": "The shipping address associated with the account. This address is used for physical deliveries, product shipments, or other logistics tied to contract execution. It also plays a role in invoicing and contract renewals involving physical products or materials.",
+        "datatype": "Address",
+        "FieldLabel": "Shipping Address"
+      },
+      {
+        "apiname": "Sic",
+        "description": "The Standard Industry Classification (SIC) code for the account\u2019s business sector. This helps categorize accounts by their industry type, allowing the organization to customize renewal offers or pricing strategies based on industry-specific needs.",
+        "datatype": "Text(20)",
+        "FieldLabel": "Sic"
+      },
+      {
+        "apiname": "SicDesc",
+        "description": "A description of the SIC code, providing more context about the account\u2019s industry. This aids in understanding which industry-specific terms or conditions should be considered when managing contract renewals.",
+        "datatype": "Text(80)",
+        "FieldLabel": "Sic Desc"
+      },
+      {
+        "apiname": "TickerSymbol",
+        "description": "The stock ticker symbol for publicly traded accounts. This symbol is used for financial tracking and market analysis, potentially impacting renewal pricing strategies based on the company\u2019s stock performance.",
+        "datatype": "Content(20)",
+        "FieldLabel": "Ticker Symbol"
+      },
+      {
+        "apiname": "Type",
+        "description": "The type or category of the account, such as customer, prospect, or partner. This influences how the organization engages with the account and determines the terms of service, contract renewals, or business offers.",
+        "datatype": "Picklist",
+        "picklistValues": [
+          "Analyst",
+          "Competitor",
+          "Customer",
+          "Integrator",
+          "Investor",
+          "Partner",
+          "Press",
+          "Prospect",
+          "Reseller",
+          "Other"
+        ],
+        "FieldLabel": "Type"
+      },
+      {
+        "apiname": "Website",
+        "description": "The URL of the account\u2019s website. This is helpful for researching the account\u2019s online presence, providing context during contract renewals, or offering additional services related to digital engagement.",
+        "datatype": "URL(255)",
+        "FieldLabel": "Website"
+      }
+    ],
+    "recordtype": [
+      {
+        "developername": "Advertiser",
+        "description": "Used to classify an Account as an Advertiser for media campaigns, budget management, and billing purposes."
+      },
+      {
+        "developername": "Agency",
+        "description": "Represents an advertising Agency involved in planning or purchasing media on behalf of Advertisers."
+      },
+      {
+        "developername": "POI",
+        "description": "This is the record type to distinguish Account records that represent a Point of Interest (POI), such as store locations or business branches relevant for geographic targeting."
+      }
+    ]
+  },
+  {
+    "object": "Quote",
+    "description": "Represents a proposal or a price quote that is provided to a customer, detailing the items or services being offered, including quantities, prices, discounts, and terms.",
+    "fields": [
+      {
+        "apiname": "QuoteAccountId",
+        "description": "The account associated with the quote, referenced by a lookup to the Account object.",
+        "datatype": "Lookup(Account)",
+        "FieldLabel": "Quote Account Id"
+      },
+      {
+        "apiname": "AccountId",
+        "description": "The account associated with the quote, referenced by a lookup to the Account object.",
+        "datatype": "Lookup(Account)",
+        "FieldLabel": "Account Id"
+      },
+      {
+        "apiname": "AdditionalAddress",
+        "description": "Additional address information for the quote.",
+        "datatype": "Address",
+        "FieldLabel": "Additional Address"
+      },
+      {
+        "apiname": "AdditionalName",
+        "description": "Additional name information for the quote.",
+        "datatype": "Text(255)",
+        "FieldLabel": "Additional Name"
+      },
+      {
+        "apiname": "Agency__c",
+        "description": "A formula field that calculates or stores the agency name associated with the quote.",
+        "datatype": "Formula (Text)",
+        "FieldLabel": "Agency"
+      },
+      {
+        "apiname": "BillingAddress",
+        "description": "The billing address associated with the quote.",
+        "datatype": "Address",
+        "FieldLabel": "Billing Address"
+      },
+      {
+        "apiname": "BillToContactId",
+        "description": "The contact to bill for the quote, referenced by a lookup to the Contact object.",
+        "datatype": "Lookup(Contact)",
+        "FieldLabel": "Bill To Contact Id"
+      },
+      {
+        "apiname": "BillingName",
+        "description": "The name to bill for the quote.",
+        "datatype": "Text(255)",
+        "FieldLabel": "Billing Name"
+      },
+      {
+        "apiname": "Budget__c",
+        "description": "The total budget for the quote in the specified currency.",
+        "datatype": "Currency(18, 0)",
+        "FieldLabel": "Budget"
+      },
+      {
+        "apiname": "CalculationStatus",
+        "description": "The status of the calculation for the quote, such as whether it is calculated, in progress, or failed.",
+        "datatype": "Picklist",
+        "FieldLabel": "Calculation Status"
+      },
+      {
+        "apiname": "CampaignEndDate__c",
+        "description": "The end date for the campaign associated with the quote.",
+        "datatype": "Date",
+        "FieldLabel": "Campaign End Date"
+      },
+      {
+        "apiname": "CampaignStartDate__c",
+        "description": "The start date for the campaign associated with the quote.",
+        "datatype": "Date",
+        "FieldLabel": "Campaign Start Date"
+      },
+      {
+        "apiname": "ContactId",
+        "description": "The contact associated with the quote, referenced by a lookup to the Contact object.",
+        "datatype": "Lookup(Contact)",
+        "FieldLabel": "Contact Id"
+      },
+      {
+        "apiname": "Description",
+        "description": "A long text area providing a description of the quote.",
+        "datatype": "Long Text Area(32000)",
+        "FieldLabel": "Description"
+      },
+      {
+        "apiname": "Discount",
+        "description": "The discount applied to the quote, represented as a percentage.",
+        "datatype": "Percent(3, 2)",
+        "FieldLabel": "Discount"
+      },
+      {
+        "apiname": "Email",
+        "description": "The email address associated with the quote.",
+        "datatype": "Email",
+        "FieldLabel": "Email"
+      },
+      {
+        "apiname": "ExpirationDate",
+        "description": "The expiration date for the quote.",
+        "datatype": "Date",
+        "FieldLabel": "Expiration Date"
+      },
+      {
+        "apiname": "Fax",
+        "description": "The fax number associated with the quote.",
+        "datatype": "Fax",
+        "FieldLabel": "Fax"
+      },
+      {
+        "apiname": "GrandTotal",
+        "description": "The grand total for the quote in the specified currency.",
+        "datatype": "Currency(16, 2)",
+        "FieldLabel": "Grand Total"
+      },
+      {
+        "apiname": "LastPricedDate",
+        "description": "The date and time when the quote was last priced.",
+        "datatype": "Date/Time",
+        "FieldLabel": "Last Priced Date"
+      },
+      {
+        "apiname": "LegalEntityId",
+        "description": "The legal entity associated with the quote, referenced by a lookup to the Legal Entity object.",
+        "datatype": "Lookup(Legal Entity)",
+        "FieldLabel": "Legal Entity Id"
+      },
+      {
+        "apiname": "LineItemCount",
+        "description": "The total number of line items associated with the quote, calculated as a roll-up summary.",
+        "datatype": "Roll-Up Summary (COUNT Quote Line Item)",
+        "FieldLabel": "Line Item Count"
+      },
+      {
+        "apiname": "MaxSpendPerPeriod__c",
+        "description": "The maximum spend per period for the quote, represented as a percentage.",
+        "datatype": "Number(18, 0)",
+        "FieldLabel": "Max Spend Per Period"
+      },
+      {
+        "apiname": "MinMargin__c",
+        "description": "The minimum margin percentage for the quote.",
+        "datatype": "Number(18, 0)",
+        "FieldLabel": "Min Margin"
+      },
+      {
+        "apiname": "MinSpendPerPeriod__c",
+        "description": "The minimum spend per period for the quote, represented as a percentage.",
+        "datatype": "Number(18, 0)",
+        "FieldLabel": "Min Spend Per Period"
+      },
+      {
+        "apiname": "OpportunityId",
+        "description": "The opportunity associated with the quote, referenced by a master-detail relationship to the Opportunity object.",
+        "datatype": "Master-Detail(Opportunity)",
+        "FieldLabel": "Opportunity Id"
+      },
+      {
+        "apiname": "OriginalActionType",
+        "description": "The original action type associated with the quote, such as a renewal or new sale.",
+        "datatype": "Picklist",
+        "FieldLabel": "Original Action Type"
+      },
+      {
+        "apiname": "OwnerId",
+        "description": "The user or group that owns the quote, referenced by a lookup to the User or Group object.",
+        "datatype": "Lookup(User,Group)",
+        "FieldLabel": "Owner Id"
+      },
+      {
+        "apiname": "ParentQuoteId__c",
+        "description": "The ID of the parent quote, if this quote is a child of another.",
+        "datatype": "Lookup(Quote)",
+        "FieldLabel": "Parent Quote Id"
+      },
+      {
+        "apiname": "PartnerAccountId",
+        "description": "The partner account associated with the quote, referenced by a lookup to the Account object.",
+        "datatype": "Lookup(Account)",
+        "FieldLabel": "Partner Account Id"
+      },
+      {
+        "apiname": "Phone",
+        "description": "The phone number associated with the quote.",
+        "datatype": "Phone",
+        "FieldLabel": "Phone"
+      },
+      {
+        "apiname": "PricingContractId",
+        "description": "The pricing contract associated with the quote, referenced by a lookup to the Contract object.",
+        "datatype": "Lookup(Contract)",
+        "FieldLabel": "Pricing Contract Id"
+      },
+      {
+        "apiname": "ProposalDuration__c",
+        "description": "The duration of the proposal associated with the quote, represented as a picklist value.",
+        "datatype": "Picklist",
+        "picklistValues": [
+          "Short",
+          "Medium",
+          "Long",
+          "Evergreen"
+        ],
+        "FieldLabel": "Proposal Duration"
+      },
+      {
+        "apiname": "ProposedACV__c",
+        "description": "The proposed annual contract value associated with the quote, represented as a picklist value.",
+        "datatype": "Picklist",
+        "picklistValues": [
+          "Low",
+          "Medium",
+          "High",
+          "Grand"
+        ],
+        "FieldLabel": "Proposed ACV"
+      },
+      {
+        "apiname": "QuoteName",
+        "description": "The name of the quote, used to identify it.",
+        "datatype": "Text(255)",
+        "FieldLabel": "Quote Name"
+      },
+      {
+        "apiname": "QuoteNumber",
+        "description": "A unique identifier for the quote, automatically generated by Salesforce.",
+        "datatype": "Auto Number",
+        "FieldLabel": "Quote Number"
+      },
+      {
+        "apiname": "RecordTypeId",
+        "description": "The record type associated with the quote, referencing a Record Type.",
+        "datatype": "Record Type",
+        "FieldLabel": "Record Type Id"
+      },
+      {
+        "apiname": "QuoteToAddress",
+        "description": "The shipping address associated with the quote.",
+        "datatype": "Address",
+        "FieldLabel": "Quote To Address"
+      },
+      {
+        "apiname": "QuoteToName",
+        "description": "The name associated with the shipping address of the quote.",
+        "datatype": "Text(255)",
+        "FieldLabel": "Quote To Name"
+      },
+      {
+        "apiname": "SalesTransactionTypeId",
+        "description": "The type of sales transaction associated with the quote.",
+        "datatype": "Lookup(Sales Transaction Type)",
+        "FieldLabel": "Sales Transaction Type Id"
+      },
+      {
+        "apiname": "ShippingAddress",
+        "description": "The shipping address associated with the quote.",
+        "datatype": "Address",
+        "FieldLabel": "Shipping Address"
+      },
+      {
+        "apiname": "ShippingName",
+        "description": "The name associated with the shipping address of the quote.",
+        "datatype": "Text(255)",
+        "FieldLabel": "Shipping Name"
+      },
+      {
+        "apiname": "ShippingHandling",
+        "description": "The cost for shipping and handling associated with the quote.",
+        "datatype": "Currency(16, 2)",
+        "FieldLabel": "Shipping Handling"
+      },
+      {
+        "apiname": "StartDate",
+        "description": "The start date for the quote.",
+        "datatype": "Date",
+        "FieldLabel": "Start Date"
+      },
+      {
+        "apiname": "Status",
+        "description": "The status of the quote, such as draft, approved, or expired.",
+        "datatype": "Picklist",
+        "picklistValues": [
+          "Draft",
+          "Needs Review",
+          "In Review",
+          "Approved",
+          "Rejected",
+          "Presented",
+          "Accepted",
+          "Superseded"
+        ],
+        "FieldLabel": "Status"
+      },
+      {
+        "apiname": "Subtotal",
+        "description": "The subtotal for the quote, calculated as a roll-up summary from Quote Line Items.",
+        "datatype": "Roll-Up Summary (SUM Quote Line Item)",
+        "FieldLabel": "Subtotal"
+      },
+      {
+        "apiname": "IsSyncing",
+        "description": "Indicates whether the quote is currently syncing with another system.",
+        "datatype": "Checkbox",
+        "FieldLabel": "Is Syncing"
+      },
+      {
+        "apiname": "Tax",
+        "description": "The tax amount associated with the quote.",
+        "datatype": "Currency(16, 2)",
+        "FieldLabel": "Tax"
+      },
+      {
+        "apiname": "TotalPrice",
+        "description": "The total price of the quote, calculated as a roll-up summary from Quote Line Items.",
+        "datatype": "Roll-Up Summary (SUM Quote Line Item)",
+        "FieldLabel": "Total Price"
+      },
+      {
+        "apiname": "TotalPriceWithTax",
+        "description": "The total price of the quote including tax.",
+        "datatype": "Currency(16, 2)",
+        "FieldLabel": "Total Price With Tax"
+      },
+      {
+        "apiname": "TotalTaxAmount",
+        "description": "The total tax amount for the quote, calculated as a roll-up summary from Quote Line Items.",
+        "datatype": "Roll-Up Summary (SUM Quote Line Item)",
+        "FieldLabel": "Total Tax Amount"
+      },
+      {
+        "apiname": "ValidationResult",
+        "description": "The result of quote validation, such as success or failure.",
+        "datatype": "Picklist",
+        "FieldLabel": "Validation Result"
+      },
+      {
+        "apiname": "Version__c",
+        "description": "The version number of the quote.",
+        "datatype": "Number(18, 0)",
+        "FieldLabel": "Version"
+      }
+    ],
+    "recordtype": [
+      {
+        "recordtype": "AdSales",
+        "description": "Used for managing Quotes related to advertising sales, including media plans and campaigns."
+      },
+      {
+        "recordtype": "ResourcePlanning",
+        "description": "Used for creating Quotes tied to resource allocation, staffing, or internal planning operations."
+      }
+    ]
+  },
+  {
+    "object": "Contact",
+    "description": "Represents an individual associated with a campaign or business. Contacts are linked to Accounts and can be involved in campaigns, sales processes, and customer support interactions. They contain key information like demographics, preferences, and engagement history, helping marketers target and personalize campaigns effectively.",
+    "fields": [
+      {
+        "apiname": "AccountId",
+        "description": "Lookup field to the Account. This field ensures that each Contact is associated with an Account, establishing the relationship between a Contact and their parent organization or company.",
+        "datatype": "Lookup (Account)",
+        "FieldLabel": "Account Id"
+      },
+      {
+        "apiname": "AssistantName",
+        "description": "The name of the assistant associated with the contact, if applicable.",
+        "datatype": "Text (40)",
+        "FieldLabel": "Assistant Name"
+      },
+      {
+        "apiname": "AssistantPhone",
+        "description": "The phone number of the assistant associated with the contact, if applicable.",
+        "datatype": "Phone",
+        "FieldLabel": "Assistant Phone"
+      },
+      {
+        "apiname": "Birthdate",
+        "description": "The birthdate of the contact, useful for personalized marketing or demographic profiling.",
+        "datatype": "Date",
+        "FieldLabel": "Birthdate"
+      },
+      {
+        "apiname": "OwnerId",
+        "description": "Lookup field to the User who owns this contact record, typically the sales or support representative responsible for the contact.",
+        "datatype": "Lookup (User)",
+        "FieldLabel": "Owner Id"
+      },
+      {
+        "apiname": "CreatedById",
+        "description": "Lookup field to the User who created this contact record.",
+        "datatype": "Lookup (User)",
+        "FieldLabel": "Created By Id"
+      },
+      {
+        "apiname": "ContactSource",
+        "description": "Picklist field to capture the source from which the contact was acquired (e.g., web form, referral, event).",
+        "datatype": "Picklist",
+        "FieldLabel": "Contact Source"
+      },
+      {
+        "apiname": "Jigsaw",
+        "description": "A reference to the contact\u2019s data from Data.com (formerly Jigsaw), useful for data enrichment.",
+        "datatype": "Text (20)",
+        "FieldLabel": "Jigsaw"
+      },
+      {
+        "apiname": "Department",
+        "description": "The department within the contact\u2019s organization, which can be used for segmentation in campaigns.",
+        "datatype": "Text (80)",
+        "FieldLabel": "Department"
+      },
+      {
+        "apiname": "Description",
+        "description": "A long text area where additional details about the contact can be added, such as preferences, interests, or history with the organization.",
+        "datatype": "Long Text Area (32000)",
+        "FieldLabel": "Description"
+      },
+      {
+        "apiname": "DoNotCall",
+        "description": "A checkbox that indicates whether the contact has opted out of phone communication.",
+        "datatype": "Checkbox",
+        "FieldLabel": "Do Not Call"
+      },
+      {
+        "apiname": "Email",
+        "description": "The contact\u2019s email address, used for email marketing and communication.",
+        "datatype": "Email",
+        "FieldLabel": "Email"
+      },
+      {
+        "apiname": "HasOptedOutOfEmail",
+        "description": "A checkbox that indicates whether the contact has opted out of email communications.",
+        "datatype": "Checkbox",
+        "FieldLabel": "Has Opted Out Of Email"
+      },
+      {
+        "apiname": "Fax",
+        "description": "The contact\u2019s fax number, used for communication when necessary.",
+        "datatype": "Phone",
+        "FieldLabel": "Fax"
+      },
+      {
+        "apiname": "HasOptedOutOfFax",
+        "description": "A checkbox that indicates whether the contact has opted out of receiving fax communications.",
+        "datatype": "Checkbox",
+        "FieldLabel": "Has Opted Out Of Fax"
+      },
+      {
+        "apiname": "GenderIdentity",
+        "description": "A picklist field to capture the gender identity of the contact for demographic profiling or targeted marketing.",
+        "datatype": "Picklist",
+        "picklistValues": [
+          "Male",
+          "Female",
+          "Nonbinary",
+          "Not Listed"
+        ],
+        "FieldLabel": "Gender Identity"
+      },
+      {
+        "apiname": "HomePhone",
+        "description": "The home phone number of the contact, used for personal outreach or emergency contact.",
+        "datatype": "Phone",
+        "FieldLabel": "Home Phone"
+      },
+      {
+        "apiname": "IndividualId",
+        "description": "Lookup field to the Individual object. This field allows associating a contact with an individual entity, useful in cases where the contact is a member of a family or other grouping.",
+        "datatype": "Lookup (Individual)",
+        "FieldLabel": "Individual Id"
+      },
+      {
+        "apiname": "Languages__c",
+        "description": "The languages spoken by the contact, useful for targeted campaigns in different regions or for multilingual outreach.",
+        "datatype": "Text (100)",
+        "FieldLabel": "Languages"
+      },
+      {
+        "apiname": "LastModifiedById",
+        "description": "Lookup field to the User who last modified this contact record.",
+        "datatype": "Lookup (User)",
+        "FieldLabel": "Last Modified By Id"
+      },
+      {
+        "apiname": "LastCURequestDate",
+        "description": "Date and time when the contact made the last 'Stay-in-Touch' request, useful for managing communication frequency.",
+        "datatype": "Date/Time",
+        "FieldLabel": "Last CU Request Date"
+      },
+      {
+        "apiname": "LastCUUpdateDate",
+        "description": "Date and time when the contact's 'Stay-in-Touch' information was last updated, useful for tracking engagement.",
+        "datatype": "Date/Time",
+        "FieldLabel": "Last CU Update Date"
+      },
+      {
+        "apiname": "LeadSource",
+        "description": "Picklist field to capture the source of the lead that generated this contact, e.g., web, phone, event.",
+        "datatype": "Picklist",
+        "FieldLabel": "Lead Source"
+      },
+      {
+        "apiname": "Level__c",
+        "description": "Picklist field that can capture the contact's seniority level within their organization, useful for segmentation.",
+        "datatype": "Picklist",
+        "FieldLabel": "Level"
+      },
+      {
+        "apiname": "MailingAddress",
+        "description": "The mailing address of the contact, useful for direct mail campaigns or regional targeting.",
+        "datatype": "Address",
+        "FieldLabel": "Mailing Address"
+      },
+      {
+        "apiname": "MobilePhone",
+        "description": "The mobile phone number of the contact, used for SMS marketing and notifications.",
+        "datatype": "Phone",
+        "FieldLabel": "Mobile Phone"
+      },
+      {
+        "apiname": "Name",
+        "description": "The full name of the contact, typically a combination of the first and last name fields.",
+        "datatype": "Name",
+        "FieldLabel": "Name"
+      },
+      {
+        "apiname": "Salutation",
+        "description": "The contact\u2019s salutation, such as Mr., Mrs., or Dr., used for personalized communication.",
+        "datatype": "Picklist",
+        "FieldLabel": "Salutation"
+      },
+      {
+        "apiname": "FirstName",
+        "description": "The first name of the contact, used for personalized communications.",
+        "datatype": "Text (40)",
+        "FieldLabel": "First Name"
+      },
+      {
+        "apiname": "LastName",
+        "description": "The last name of the contact, used for personalization in communications.",
+        "datatype": "Text (80)",
+        "FieldLabel": "Last Name"
+      },
+      {
+        "apiname": "OtherAddress",
+        "description": "The contact\u2019s alternative address, if applicable, useful for direct mail or special campaigns.",
+        "datatype": "Address",
+        "FieldLabel": "Other Address"
+      },
+      {
+        "apiname": "OtherPhone",
+        "description": "The contact\u2019s other phone number, which can be used as an alternative for communication.",
+        "datatype": "Phone",
+        "FieldLabel": "Other Phone"
+      },
+      {
+        "apiname": "Phone",
+        "description": "The primary phone number of the contact, used for general communication.",
+        "datatype": "Phone",
+        "FieldLabel": "Phone"
+      },
+      {
+        "apiname": "Pronouns",
+        "description": "The pronouns used by the contact, helping to personalize communication and show respect for identity.",
+        "datatype": "Picklist",
+        "FieldLabel": "Pronouns"
+      },
+      {
+        "apiname": "ReportsToId",
+        "description": "Lookup field to the contact\u2019s supervisor or manager, providing hierarchical context.",
+        "datatype": "Lookup (Contact)",
+        "FieldLabel": "Reports To Id"
+      },
+      {
+        "apiname": "Title",
+        "description": "The job title or position of the contact, used for segmentation or personalized outreach.",
+        "datatype": "Text (128)",
+        "FieldLabel": "Title"
+      },
+      {
+        "apiname": "Start_Date__c",
+        "description": "The date when the contact's employment/role started at the company. CRITICAL FOR FILTERING CURRENTLY WORKING EMPLOYEES: Use this field with End_Date__c to identify active employees. A contact is currently working if: Start_Date__c <= TODAY AND (End_Date__c = null OR End_Date__c >= TODAY). Example SOQL: WHERE Start_Date__c <= TODAY AND (End_Date__c = null OR End_Date__c >= TODAY). This is NOT related to CampaignMember.Status which tracks email campaign engagement.",
+        "datatype": "Date",
+        "FieldLabel": "Start_ Date"
+      },
+      {
+        "apiname": "End_Date__c",
+        "description": "The date when the contact's employment/role ends at the company. CRITICAL FOR FILTERING CURRENTLY WORKING EMPLOYEES: If this field is NULL/blank, the contact is still employed (ongoing). If End_Date__c < TODAY, the contact is no longer working. If End_Date__c >= TODAY, they are still employed. To find currently working contacts, use: WHERE (End_Date__c = null OR End_Date__c >= TODAY) AND Start_Date__c <= TODAY. This is NOT related to CampaignMember.Status which tracks email campaign engagement (Sent/Responded/Draft).",
+        "datatype": "Date",
+        "FieldLabel": "End_ Date"
+      }
+    ]
+  },
+  {
+    "object": "Campaign",
+    "description": "Represents a marketing campaign used for tracking and organizing marketing efforts, such as product promotions, events, or outreach programs. The Campaign object allows for tracking costs, revenue, responses, and related records like leads, opportunities, and contacts.",
+    "fields": [
+      {
+        "FieldLabel": "Active",
+        "apiname": "IsActive",
+        "description": "Indicates whether the campaign is currently active. If the campaign is active, it will be used in marketing operations; otherwise, it is archived.",
+        "datatype": "Checkbox"
+      },
+      {
+        "FieldLabel": "Actual Cost in Campaign",
+        "apiname": "ActualCost",
+        "description": "The actual cost of the campaign. This value is updated to reflect the true expenses incurred during the campaign's execution.",
+        "datatype": "Currency (18, 0)"
+      },
+      {
+        "FieldLabel": "Actual Cost in Hierarchy",
+        "apiname": "HierarchyActualCost",
+        "description": "The total actual cost of the campaign including costs from its child campaigns, representing the full scope of expenses.",
+        "datatype": "Currency (18, 0)"
+      },
+      {
+        "FieldLabel": "Budgeted Cost in Campaign",
+        "apiname": "BudgetedCost",
+        "description": "The initial budget allocated to the campaign, representing the planned expenses.",
+        "datatype": "Currency (18, 0)",
+        "needvalue": true
+      },
+      {
+        "FieldLabel": "Budgeted Cost in Hierarchy",
+        "apiname": "HierarchyBudgetedCost",
+        "description": "The total budget of the campaign including the budgets of its child campaigns, representing the overall financial scope of the campaign.",
+        "datatype": "Currency (18, 0)"
+      },
+      {
+        "FieldLabel": "Campaign Member Type",
+        "apiname": "CampaignMemberRecordTypeId",
+        "description": "Lookup to the Record Type that defines the type of campaign member (e.g., contact, lead). This field helps differentiate different types of campaign members in a marketing effort.",
+        "datatype": "Lookup (Record Type)"
+      },
+      {
+        "FieldLabel": "Campaign Name",
+        "apiname": "Name",
+        "description": "The name of the campaign, used to identify and track the campaign within Salesforce. Typically reflects the campaign's focus or goal.",
+        "datatype": "Text (80)",
+        "needvalue": true
+      },
+      {
+        "FieldLabel": "Campaign Owner",
+        "apiname": "OwnerId",
+        "description": "Lookup to the User who owns the campaign. The campaign owner is typically the person responsible for managing and executing the campaign.",
+        "datatype": "Lookup (User)"
+      },
+      {
+        "FieldLabel": "Contacts in Campaign",
+        "apiname": "NumberOfContacts",
+        "description": "The total number of contacts associated with the campaign. This field can be used to track how many people are being targeted in the campaign.",
+        "datatype": "Number (9, 0)"
+      },
+      {
+        "FieldLabel": "Contacts in Hierarchy",
+        "apiname": "HierarchyNumberOfContacts",
+        "description": "The total number of contacts involved in the campaign including those from child campaigns, providing a full view of the campaign\u2019s reach.",
+        "datatype": "Number (9, 0)"
+      },
+      {
+        "FieldLabel": "Converted Leads in Campaign",
+        "apiname": "NumberOfConvertedLeads",
+        "description": "The number of leads that were converted as a result of the campaign, tracking the campaign\u2019s success in generating sales-qualified leads.",
+        "datatype": "Number (9, 0)"
+      },
+      {
+        "FieldLabel": "Converted Leads in Hierarchy",
+        "apiname": "HierarchyNumberOfConvertedLeads",
+        "description": "The number of converted leads from the parent campaign and its child campaigns, giving a comprehensive view of lead conversion across multiple campaign levels.",
+        "datatype": "Number (9, 0)"
+      },
+      {
+        "FieldLabel": "Created By",
+        "apiname": "CreatedById",
+        "description": "Lookup to the User who created the campaign record, typically used for auditing and tracking the record's origin.",
+        "datatype": "Lookup (User)"
+      },
+      {
+        "FieldLabel": "Description",
+        "apiname": "Description",
+        "description": "A long text field where additional information or notes about the campaign can be stored, such as goals, target audience, or campaign strategy.",
+        "datatype": "Long Text Area (32000)"
+      },
+      {
+        "FieldLabel": "Email Template",
+        "apiname": "Email_template__c",
+        "description": "Stores the email template identifier to be used for this Campaign (e.g. the template ID for campaign email communications).",
+        "datatype": "Picklist",
+        "needvalue": true,
+        "defaultValue": "3 - Marketing email",
+        "picklistValues": [
+          "3 - Marketing email",
+          "4 - Vicennium Celebration"
+        ]
+      },
+      {
+        "FieldLabel": "End Date",
+        "apiname": "EndDate",
+        "description": "The end date of the campaign, indicating when the campaign is scheduled to close.",
+        "datatype": "Date",
+        "defaultValue": "StartDate + 30 days",
+        "needvalue": true
+      },
+      {
+        "FieldLabel": "Expected Response (%)",
+        "apiname": "ExpectedResponse",
+        "description": "The expected response rate for the campaign, usually expressed as a percentage. This helps measure the anticipated effectiveness of the campaign.",
+        "datatype": "Percent (8, 2)"
+      },
+      {
+        "FieldLabel": "Expected Revenue in Campaign",
+        "apiname": "ExpectedRevenue",
+        "description": "The projected revenue that the campaign is expected to generate, based on forecasts or assumptions.",
+        "datatype": "Currency (18, 0)",
+        "needvalue": true
+      },
+      {
+        "FieldLabel": "Expected Revenue in Hierarchy",
+        "apiname": "HierarchyExpectedRevenue",
+        "description": "The total expected revenue of the campaign, including revenue from child campaigns, giving a full picture of the financial expectations for the entire campaign hierarchy.",
+        "datatype": "Currency (18, 0)"
+      },
+      {
+        "FieldLabel": "Last Modified By",
+        "apiname": "LastModifiedById",
+        "description": "Lookup to the User who last modified the campaign record, useful for auditing and tracking changes.",
+        "datatype": "Lookup (User)"
+      },
+      {
+        "FieldLabel": "Leads in Campaign",
+        "apiname": "NumberOfLeads",
+        "description": "The total number of leads associated with the campaign, indicating how many individuals were targeted through lead generation activities.",
+        "datatype": "Number (9, 0)"
+      },
+      {
+        "FieldLabel": "Leads in Hierarchy",
+        "apiname": "HierarchyNumberOfLeads",
+        "description": "The total number of leads involved in the campaign including those from child campaigns, providing a full view of lead volume across the hierarchy.",
+        "datatype": "Number (9, 0)"
+      },
+      {
+        "FieldLabel": "Num Sent in Campaign",
+        "apiname": "NumberSent",
+        "description": "The number of messages sent as part of this campaign (system-calculated where applicable).",
+        "datatype": "Number (18, 0)"
+      },
+      {
+        "FieldLabel": "Num Sent in Hierarchy",
+        "apiname": "HierarchyNumberSent",
+        "description": "The number of messages sent for the parent campaign and its child campaigns combined (system-calculated where applicable).",
+        "datatype": "Number (18, 0)"
+      },
+      {
+        "FieldLabel": "Opportunities in Campaign",
+        "apiname": "NumberOfOpportunities",
+        "description": "The number of opportunities generated by the campaign, reflecting the campaign\u2019s impact on sales.",
+        "datatype": "Number (9, 0)"
+      },
+      {
+        "FieldLabel": "Opportunities in Hierarchy",
+        "apiname": "HierarchyNumberOfOpportunities",
+        "description": "The number of opportunities generated by the campaign including child campaigns, providing a full view across the campaign hierarchy.",
+        "datatype": "Number (9, 0)"
+      },
+      {
+        "FieldLabel": "Parent Campaign",
+        "apiname": "ParentId",
+        "description": "Lookup to the Parent Campaign, if this campaign is part of a hierarchy. This allows for campaign rollups to track data across parent-child relationships.",
+        "datatype": "Lookup (Campaign)"
+      },
+      {
+        "FieldLabel": "Responses in Campaign",
+        "apiname": "NumberOfResponses",
+        "description": "The number of responses received from contacts or leads as part of the campaign. This could be an indicator of engagement or interest in the campaign.",
+        "datatype": "Number (9, 0)"
+      },
+      {
+        "FieldLabel": "Responses in Hierarchy",
+        "apiname": "HierarchyNumberOfResponses",
+        "description": "The number of responses received across the parent campaign and its child campaigns combined.",
+        "datatype": "Number (9, 0)"
+      },
+      {
+        "FieldLabel": "Start Date",
+        "apiname": "StartDate",
+        "description": "The start date of the campaign, indicating when the campaign activities are scheduled to begin.",
+        "datatype": "Date",
+        "defaultValue": "Today + 7 days",
+        "needvalue": true
+      },
+      {
+        "FieldLabel": "Status",
+        "apiname": "Status",
+        "description": "The current status of the campaign. This field helps track the progress of the campaign.",
+        "datatype": "Picklist",
+        "defaultValue": "Planned",
+        "needvalue": true,
+        "picklistValues": [
+          "Planned",
+          "In Progress",
+          "Completed",
+          "Aborted"
+        ]
+      },
+      {
+        "FieldLabel": "Type",
+        "apiname": "Type",
+        "description": "The type of the campaign used for categorization and reporting purposes.",
+        "datatype": "Picklist",
+        "needvalue": true,
+        "picklistValues": [
+          "Conference",
+          "Webinar",
+          "Trade Show",
+          "Public Relations",
+          "Partners",
+          "Referral Program",
+          "Advertisement",
+          "Banner Ads",
+          "Direct Mail",
+          "Email",
+          "Telemarketing",
+          "Other"
+        ]
+      },
+      {
+        "FieldLabel": "Value Opportunities in Campaign",
+        "apiname": "AmountAllOpportunities",
+        "description": "The total value of all opportunities associated with the campaign, showing the overall potential revenue generated by the campaign\u2019s opportunities.",
+        "datatype": "Currency (18, 0)"
+      },
+      {
+        "FieldLabel": "Value Opportunities in Hierarchy",
+        "apiname": "HierarchyAmountAllOpportunities",
+        "description": "The total value of all opportunities associated with the parent campaign and its child campaigns combined.",
+        "datatype": "Currency (18, 0)"
+      },
+      {
+        "FieldLabel": "Value Won Opportunities in Campaign",
+        "apiname": "AmountWonOpportunities",
+        "description": "The total value of the opportunities that have been won as a result of the campaign, providing a view of the campaign's success in generating actual sales.",
+        "datatype": "Currency (18, 0)"
+      },
+      {
+        "FieldLabel": "Value Won Opportunities in Hierarchy",
+        "apiname": "HierarchyAmountWonOpportunities",
+        "description": "The total value of all won opportunities across the parent campaign and its child campaigns combined.",
+        "datatype": "Currency (18, 0)"
+      },
+      {
+        "FieldLabel": "Won Opportunities in Campaign",
+        "apiname": "NumberOfWonOpportunities",
+        "description": "The number of opportunities that were won during the campaign, representing a successful outcome.",
+        "datatype": "Number (9, 0)"
+      },
+      {
+        "FieldLabel": "Won Opportunities in Hierarchy",
+        "apiname": "HierarchyNumberOfWonOpportunities",
+        "description": "The number of won opportunities across the parent campaign and its child campaigns combined.",
+        "datatype": "Number (9, 0)"
+      }
+    ]
+  },
+  {
+    "object": "CampaignMember",
+    "description": "Represents an individual\u2019s association with a campaign. A CampaignMember object links a Contact, Lead, or Person Account with a Campaign, tracking their participation, response status, and engagement with the marketing effort.",
+    "fields": [
+      {
+        "apiname": "CampaignId",
+        "description": "Lookup field to the associated Campaign. This links the campaign member to the specific Campaign they are a part of.",
+        "datatype": "Lookup (Campaign)",
+        "FieldLabel": "Campaign Id"
+      },
+      {
+        "apiname": "City",
+        "description": "The city where the campaign member resides or is located. This can be useful for regional targeting and segmentation in marketing efforts.",
+        "datatype": "Text (40)",
+        "FieldLabel": "City"
+      },
+      {
+        "apiname": "CompanyOrAccount",
+        "description": "The name of the company or organization the campaign member belongs to, representing their associated **Account** in Salesforce.",
+        "datatype": "Text (255)",
+        "FieldLabel": "Company Or Account"
+      },
+      {
+        "apiname": "ContactId",
+        "description": "Lookup field to the Contact associated with this Campaign Member. This links a contact to a specific campaign, tracking their engagement and participation.",
+        "datatype": "Lookup (Contact)",
+        "FieldLabel": "Contact Id"
+      },
+      {
+        "apiname": "Country",
+        "description": "The country where the campaign member is located. This field can be used for geographic segmentation and international marketing strategies.",
+        "datatype": "Text (80)",
+        "FieldLabel": "Country"
+      },
+      {
+        "apiname": "CreatedById",
+        "description": "Lookup field to the User who created the Campaign Member record. This is used for tracking record ownership and auditing.",
+        "datatype": "Lookup (User)",
+        "FieldLabel": "Created By Id"
+      },
+      {
+        "apiname": "CreatedDate",
+        "description": "The date and time when the Campaign Member record was created. This can be used for tracking when a contact or lead was associated with the campaign.",
+        "datatype": "Date/Time",
+        "FieldLabel": "Created Date"
+      },
+      {
+        "apiname": "Description",
+        "description": "A long text field that can store additional information about the Campaign Member, such as notes on their participation, behavior, or engagement level in the campaign.",
+        "datatype": "Long Text Area (32000)",
+        "FieldLabel": "Description"
+      },
+      {
+        "apiname": "DoNotCall",
+        "description": "Checkbox indicating whether the campaign member has opted out of phone calls. This helps comply with privacy regulations and user preferences.",
+        "datatype": "Checkbox",
+        "FieldLabel": "Do Not Call"
+      },
+      {
+        "apiname": "Email",
+        "description": "The email address of the campaign member, used for email communications and digital marketing efforts.",
+        "datatype": "Email",
+        "FieldLabel": "Email"
+      },
+      {
+        "apiname": "HasOptedOutOfEmail",
+        "description": "A checkbox indicating whether the campaign member has opted out of receiving email communications as part of the campaign.",
+        "datatype": "Checkbox",
+        "FieldLabel": "Has Opted Out Of Email"
+      },
+      {
+        "apiname": "Fax",
+        "description": "The fax number of the campaign member, used for fax-based marketing or notifications, if applicable.",
+        "datatype": "Phone",
+        "FieldLabel": "Fax"
+      },
+      {
+        "apiname": "HasOptedOutOfFax",
+        "description": "A checkbox indicating whether the campaign member has opted out of receiving fax communications as part of the campaign.",
+        "datatype": "Checkbox",
+        "FieldLabel": "Has Opted Out Of Fax"
+      },
+      {
+        "apiname": "FirstName",
+        "description": "The first name of the campaign member, used for personalization in email and other marketing communications.",
+        "datatype": "Text (40)",
+        "FieldLabel": "First Name"
+      },
+      {
+        "apiname": "FirstRespondedDate",
+        "description": "The date when the campaign member first responded to the campaign, useful for tracking engagement and follow-up activities.",
+        "datatype": "Date",
+        "FieldLabel": "First Responded Date"
+      },
+      {
+        "apiname": "LastModifiedById",
+        "description": "Lookup field to the User who last modified the Campaign Member record. This field helps with record auditing and tracking changes over time.",
+        "datatype": "Lookup (User)",
+        "FieldLabel": "Last Modified By Id"
+      },
+      {
+        "apiname": "LastModifiedDate",
+        "description": "The date and time when the Campaign Member record was last modified. This is useful for tracking the most recent updates to engagement and status.",
+        "datatype": "Date/Time",
+        "FieldLabel": "Last Modified Date"
+      },
+      {
+        "apiname": "LastName",
+        "description": "The last name of the campaign member, used for personalization and identifying the individual within the campaign.",
+        "datatype": "Text (80)",
+        "FieldLabel": "Last Name"
+      },
+      {
+        "apiname": "LeadId",
+        "description": "Lookup field to the Lead associated with this Campaign Member. This is relevant for campaigns that target Leads as well as Contacts.",
+        "datatype": "Lookup (Lead)",
+        "FieldLabel": "Lead Id"
+      },
+      {
+        "apiname": "LeadSource",
+        "description": "Picklist field indicating the source from which the Lead or Contact was acquired. This helps measure campaign success by tracking lead generation sources.",
+        "datatype": "Picklist",
+        "picklistValues": [
+          "Web",
+          "Phone Inquiry",
+          "Partner Referral",
+          "Purchased List",
+          "Other"
+        ],
+        "FieldLabel": "Lead Source"
+      },
+      {
+        "apiname": "MobilePhone",
+        "description": "The mobile phone number of the campaign member, useful for SMS marketing or personalized mobile outreach.",
+        "datatype": "Phone",
+        "FieldLabel": "Mobile Phone"
+      },
+      {
+        "apiname": "Phone",
+        "description": "The primary phone number of the campaign member, used for phone-based outreach or communication.",
+        "datatype": "Phone",
+        "FieldLabel": "Phone"
+      },
+      {
+        "apiname": "HasResponded",
+        "description": "Checkbox indicating whether the campaign member has responded to the campaign, helping to track engagement and conversion.",
+        "datatype": "Checkbox",
+        "FieldLabel": "Has Responded"
+      },
+      {
+        "apiname": "Salutation",
+        "description": "The salutation of the campaign member used for respectful communication in personalized marketing.",
+        "datatype": "Picklist",
+        "picklistValues": [
+          "Mr.",
+          "Ms.",
+          "Mrs.",
+          "Dr.",
+          "Prof.",
+          "Mx."
+        ],
+        "FieldLabel": "Salutation"
+      },
+      {
+        "apiname": "State",
+        "description": "The state or province where the campaign member is located. This field can be used for regional targeting in campaigns.",
+        "datatype": "Text (80)",
+        "FieldLabel": "State"
+      },
+      {
+        "apiname": "Status",
+        "description": "Picklist field that tracks the EMAIL CAMPAIGN ENGAGEMENT status of the campaign member (e.g., whether the email was Sent, Received, or they Responded). IMPORTANT: This field is NOT for employment status. To filter contacts who are currently working at the company, use the Contact object's Start_Date__c and End_Date__c fields instead. Values like 'Sent', 'Responded', 'Planned' indicate email campaign activity, not whether someone is actively employed.",
+        "datatype": "Picklist",
+        "picklistValues": [
+          "Planned",
+          "Sent",
+          " Received",
+          " Responded "
+        ],
+        "FieldLabel": "Status"
+      },
+      {
+        "apiname": "Street",
+        "description": "The street address of the campaign member, useful for direct mail campaigns or location-based outreach.",
+        "datatype": "Text (255)",
+        "FieldLabel": "Street"
+      },
+      {
+        "apiname": "Title",
+        "description": "The job title of the campaign member, useful for segmentation and targeting based on their position within an organization.",
+        "datatype": "Text (128)",
+        "FieldLabel": "Title"
+      },
+      {
+        "apiname": "PostalCode",
+        "description": "The postal code of the campaign member\u2019s location, useful for geographic segmentation and regional targeting in campaigns.",
+        "datatype": "Text (20)",
+        "FieldLabel": "Postal Code"
+      }
+    ]
+  },
+  {
+    "object": "CampaignMemberStatus",
+    "description": "Represents the set of allowed Campaign Member Status values for a specific Campaign. These records control what values appear in the Campaign Member 'Status' picklist for that Campaign, and which one is the default.",
+    "fields": [
+      {
+        "apiname": "Id",
+        "description": "System-generated unique identifier for the Campaign Member Status record.",
+        "datatype": "Id",
+        "FieldLabel": "Id"
+      },
+      {
+        "apiname": "IsDeleted",
+        "description": "Indicates whether the record has been deleted (soft-deleted).",
+        "datatype": "Checkbox",
+        "FieldLabel": "Is Deleted"
+      },
+      {
+        "apiname": "CampaignId",
+        "description": "Lookup to the Campaign that this status set belongs to. Status values are stored per Campaign.",
+        "datatype": "Lookup (Campaign)",
+        "needValue": true,
+        "FieldLabel": "Campaign Id"
+      },
+      {
+        "apiname": "Label",
+        "description": "The status label shown to users in the Campaign Member Status dropdown (for this Campaign). Example: Draft, Sent, Responded.",
+        "datatype": "Text",
+        "needValue": true,
+        "FieldLabel": "Label"
+      },
+      {
+        "apiname": "SortOrder",
+        "description": "Controls the display order of statuses in the Campaign Member Status dropdown (lower numbers appear first).",
+        "datatype": "Number",
+        "needValue": true,
+        "FieldLabel": "Sort Order"
+      },
+      {
+        "apiname": "IsDefault",
+        "description": "If true, this status becomes the default value when a new Campaign Member is created for this Campaign. Only one status per Campaign should be marked as default.",
+        "datatype": "Checkbox",
+        "needValue": true,
+        "FieldLabel": "Is Default"
+      },
+      {
+        "apiname": "HasResponded",
+        "description": "If true, this status is treated as a 'Responded' status for campaign reporting and response metrics.",
+        "datatype": "Checkbox",
+        "needValue": true,
+        "FieldLabel": "Has Responded"
+      }
+    ]
+  },
+  {
+    "object": "Lead",
+    "description": "Represents a potential sales opportunity or prospect. Leads are typically used to track unqualified potential customers, and once qualified, they are converted into an Account, Contact, or Opportunity.",
+    "fields": [
+      {
+        "apiname": "Address",
+        "description": "The mailing address of the lead. This field helps in targeting leads for location-based campaigns.",
+        "datatype": "Address",
+        "FieldLabel": "Address"
+      },
+      {
+        "apiname": "AnnualRevenue",
+        "description": "The annual revenue of the company associated with the lead. Used for segmenting leads based on company size.",
+        "datatype": "Currency (18, 0)",
+        "FieldLabel": "Annual Revenue"
+      },
+      {
+        "apiname": "Company",
+        "description": "The name of the company associated with the lead, useful for B2B sales and identifying target organizations.",
+        "datatype": "Text (255)",
+        "FieldLabel": "Company"
+      },
+      {
+        "apiname": "CompanyDunsNumber",
+        "description": "The D-U-N-S number for the company, which is a unique identifier for businesses used in global databases.",
+        "datatype": "Text (9)",
+        "FieldLabel": "Company Duns Number"
+      },
+      {
+        "apiname": "CreatedById",
+        "description": "Lookup to the User who created the lead record. Helps track lead ownership and record creation history.",
+        "datatype": "Lookup (User)",
+        "FieldLabel": "Created By Id"
+      },
+      {
+        "apiname": "CurrentGenerators__c",
+        "description": "Custom field capturing the current generators or products of interest for the lead, useful for tailoring outreach strategies.",
+        "datatype": "Text (100)",
+        "FieldLabel": "Current Generators"
+      },
+      {
+        "apiname": "DandbCompanyId",
+        "description": "Lookup to the D&B Company record, which provides additional business data about the lead from Dun & Bradstreet.",
+        "datatype": "Lookup (D&B Company)",
+        "FieldLabel": "Dandb Company Id"
+      },
+      {
+        "apiname": "Jigsaw",
+        "description": "The Data.com key for the lead, used to enrich the lead data from Data.com (now a part of Salesforce).",
+        "datatype": "Text (20)",
+        "FieldLabel": "Jigsaw"
+      },
+      {
+        "apiname": "Description",
+        "description": "A long text field used to store detailed notes or additional information about the lead, such as interests, needs, or history.",
+        "datatype": "Long Text Area (32000)",
+        "FieldLabel": "Description"
+      },
+      {
+        "apiname": "DoNotCall",
+        "description": "Checkbox indicating whether the lead has opted out of phone calls. Important for compliance and respecting customer preferences.",
+        "datatype": "Checkbox",
+        "FieldLabel": "Do Not Call"
+      },
+      {
+        "apiname": "Email",
+        "description": "The email address of the lead. Used for **email marketing**, outreach, and nurturing.",
+        "datatype": "Email",
+        "FieldLabel": "Email"
+      },
+      {
+        "apiname": "HasOptedOutOfEmail",
+        "description": "A checkbox indicating whether the lead has opted out of receiving email communications.",
+        "datatype": "Checkbox",
+        "FieldLabel": "Has Opted Out Of Email"
+      },
+      {
+        "apiname": "Fax",
+        "description": "The fax number for the lead, used for fax-based marketing (less common today, but may still be in use in some industries).",
+        "datatype": "Phone",
+        "FieldLabel": "Fax"
+      },
+      {
+        "apiname": "HasOptedOutOfFax",
+        "description": "A checkbox indicating whether the lead has opted out of receiving fax communications.",
+        "datatype": "Checkbox",
+        "FieldLabel": "Has Opted Out Of Fax"
+      },
+      {
+        "apiname": "GenderIdentity",
+        "description": "Picklist field capturing the gender identity of the lead, useful for demographic segmentation in campaigns.",
+        "datatype": "Picklist",
+        "picklistValues": [
+          "Male",
+          "Female",
+          "Nonbinary",
+          "Not Listed"
+        ],
+        "FieldLabel": "Gender Identity"
+      },
+      {
+        "apiname": "IndividualId",
+        "description": "Lookup to the Individual object. This field allows associating the lead with an individual entity, useful for personal outreach.",
+        "datatype": "Lookup (Individual)",
+        "FieldLabel": "Individual Id"
+      },
+      {
+        "apiname": "Industry",
+        "description": "The industry in which the lead operates. This is useful for B2B sales teams for segmenting leads by sector or industry.",
+        "datatype": "Picklist",
+        "FieldLabel": "Industry"
+      },
+      {
+        "apiname": "LastModifiedById",
+        "description": "Lookup to the User who last modified the lead record. This helps with tracking changes to the record and user accountability.",
+        "datatype": "Lookup (User)",
+        "FieldLabel": "Last Modified By Id"
+      },
+      {
+        "apiname": "LastTransferDate",
+        "description": "The last date the lead was transferred between users or sales representatives.",
+        "datatype": "Date",
+        "FieldLabel": "Last Transfer Date"
+      },
+      {
+        "apiname": "OwnerId",
+        "description": "Lookup to the User or Group who owns the lead record, representing the sales rep or team responsible for the lead.",
+        "datatype": "Lookup (User, Group)",
+        "FieldLabel": "Owner Id"
+      },
+      {
+        "apiname": "LeadSource",
+        "description": "Picklist field indicating the source from which the lead was acquired  . This helps track lead generation effectiveness.",
+        "datatype": "Picklist",
+        "picklistValues": [
+          "Web",
+          "Phone Inquiry",
+          "Partner Referral",
+          "Purchased List",
+          "Other"
+        ],
+        "FieldLabel": "Lead Source"
+      },
+      {
+        "apiname": "Status",
+        "description": "Picklist field that tracks the current status of the lead (e.g., New, Working, Converted). This field is essential for managing lead pipeline.",
+        "datatype": "Picklist",
+        "picklistValues": [
+          "Open - Not Contacted",
+          "Working - Contacted",
+          "Closed - Converted",
+          "Closed - Not Converted"
+        ],
+        "FieldLabel": "Status"
+      },
+      {
+        "apiname": "MobilePhone",
+        "description": "The mobile phone number of the lead, used for SMS marketing, mobile outreach, and quick communication.",
+        "datatype": "Phone",
+        "FieldLabel": "Mobile Phone"
+      },
+      {
+        "apiname": "Name",
+        "description": "The full name of the lead, typically a combination of the first and last name fields, used for personalization and identification.",
+        "datatype": "Name",
+        "FieldLabel": "Name"
+      },
+      {
+        "apiname": "Salutation",
+        "description": "The salutation used when addressing the lead in communications.",
+        "datatype": "Picklist",
+        "picklistValues": [
+          "Mr.",
+          "Ms.",
+          "Mrs.",
+          "Dr.",
+          "Prof.",
+          "Mx."
+        ],
+        "FieldLabel": "Salutation"
+      },
+      {
+        "apiname": "FirstName",
+        "description": "The first name of the lead, used for personalized communications and outreach.",
+        "datatype": "Text (40)",
+        "FieldLabel": "First Name"
+      },
+      {
+        "apiname": "LastName",
+        "description": "The last name of the lead, used for addressing the lead and personalizing communications.",
+        "datatype": "Text (80)",
+        "FieldLabel": "Last Name"
+      },
+      {
+        "apiname": "NumberOfEmployees",
+        "description": "The number of employees in the lead's company, used to segment leads by company size for targeting purposes.",
+        "datatype": "Number (8, 0)",
+        "FieldLabel": "Number Of Employees"
+      },
+      {
+        "apiname": "NumberofLocations__c",
+        "description": "The number of locations for the lead\u2019s company, helping to understand the scale of the business.",
+        "datatype": "Number (3, 0)",
+        "FieldLabel": "Numberof Locations"
+      },
+      {
+        "apiname": "Phone",
+        "description": "The primary phone number of the lead, used for outreach and communication.",
+        "datatype": "Phone",
+        "FieldLabel": "Phone"
+      },
+      {
+        "apiname": "Primary__c",
+        "description": "Picklist field indicating whether this lead is considered a primary contact for the associated company or account.",
+        "datatype": "Picklist",
+        "picklistValues": [
+          "No",
+          "Yes"
+        ],
+        "FieldLabel": "Primary"
+      },
+      {
+        "apiname": "ProductInterest__c",
+        "description": "Picklist to capture the products or services the lead is interested in, useful for segmentation and targeted sales outreach.",
+        "datatype": "Picklist",
+        "picklistValues": [
+          "GC1000 series",
+          "GC5000 series",
+          "GC3000 series"
+        ],
+        "FieldLabel": "Product Interest"
+      },
+      {
+        "apiname": "Pronouns",
+        "description": "Picklist to capture the pronouns used by the lead, helping to personalize communication and show respect for identity.",
+        "datatype": "Picklist",
+        "picklistValues": [
+          "He/Him",
+          "She/Her",
+          "They/Them",
+          "He/They",
+          "She/They",
+          "Not Listed"
+        ],
+        "FieldLabel": "Pronouns"
+      },
+      {
+        "apiname": "Rating",
+        "description": "Picklist field to rate the lead's quality or readiness for conversion, useful for prioritizing leads in the sales process.",
+        "datatype": "Picklist",
+        "picklistValues": [
+          "Hot",
+          "Warm",
+          "Cold"
+        ],
+        "FieldLabel": "Rating"
+      },
+      {
+        "apiname": "SICCode__c",
+        "description": "The Standard Industry Classification (SIC) code for the lead's company, used for segmenting leads by industry or vertical.",
+        "datatype": "Text (15)",
+        "FieldLabel": "SIC Code"
+      },
+      {
+        "apiname": "Title",
+        "description": "The job title of the lead, helping to personalize outreach and provide context on their role within the organization.",
+        "datatype": "Text (128)",
+        "FieldLabel": "Title"
+      },
+      {
+        "apiname": "Website",
+        "description": "The website URL for the lead\u2019s company, useful for researching the lead and understanding their business.",
+        "datatype": "URL(255)",
+        "FieldLabel": "Website"
+      }
+    ]
+  }
+]

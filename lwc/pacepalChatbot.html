@@ -1,0 +1,208 @@
+<!-- pacepsl.html -->
+<template>
+    <!-- Chat Button (Click to Open) -->
+    <div class="chat-container">
+        <button class="chat-button" onclick={toggleChat} title="Open Marketing Agent Chat">
+            <lightning-icon icon-name="utility:chat" alternative-text="Chat" size="medium"></lightning-icon>
+            <span class="chat-button-text"></span>
+        </button>
+
+        <!-- Chat Window -->
+        <template if:true={isChatOpen}>
+            <div class="chat-window">
+                <!-- Header -->
+                <div class="chat-header">
+                    <div class="chat-title">
+                        <lightning-icon icon-name="utility:chat" alternative-text="Chat" size="small"></lightning-icon>
+                        <span>Pacepal - Marketing Agent</span>
+                    </div>
+                    <div class="chat-controls">
+                        <span class={connectionStatusClass}>{connectionStatus}</span>
+                        <button class="control-btn" onclick={toggleChat} title="Close">
+                            <lightning-icon icon-name="utility:close" alternative-text="Close"
+                                size="x-small"></lightning-icon>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Messages Area -->
+                <div class="chat-messages">
+                    <template for:each={messages} for:item="msg">
+                        <div key={msg.id} class={msg.class}>
+                            <!-- Thinking Indicator -->
+                            <template if:true={msg.isThinking}>
+                                <div class="message-content thinking-content">
+                                    <span>Agent is thinking</span>
+                                    <span class="thinking-dots">
+                                        <span>.</span><span>.</span><span>.</span>
+                                    </span>
+                                </div>
+                            </template>
+
+                            <!-- Standard Text Message -->
+                            <template if:false={msg.isReview}>
+                                <template if:false={msg.isThinking}>
+                                    <div class="message-content">
+                                        <lightning-formatted-rich-text
+                                            value={msg.content}></lightning-formatted-rich-text>
+                                    </div>
+                                    <div class="message-timestamp">{msg.timestamp}</div>
+                                </template>
+                            </template>
+
+                            <!-- Review Proposal Card Message -->
+                            <template if:true={msg.isReview}>
+                                <div class="review-proposal-container inline-card">
+                                    <!-- <div class="review-header">
+                                        <lightning-icon icon-name="utility:preview" size="small"></lightning-icon>
+                                        <span>Review Proposal</span>
+                                    </div> -->
+
+                                    <div class="review-body">
+                                        <p class="review-intro">{msg.content}</p>
+
+                                        <!-- READ ONLY MODE -->
+                                        <template if:false={msg.isEditing}>
+                                            <div class="proposal-summary">
+                                                <template for:each={msg.fields} for:item="field">
+                                                    <div key={field.key} class="summary-row">
+                                                        <span class="field-label">{field.label}:</span>
+                                                        <span class="field-value">{field.value}</span>
+                                                    </div>
+                                                </template>
+                                            </div>
+                                        </template>
+
+                                        <!-- EDIT MODE -->
+                                        <template if:true={msg.isEditing}>
+                                            <div class="proposal-fields">
+                                                <template for:each={msg.fields} for:item="field">
+                                                    <div key={field.key} class="field-wrapper">
+                                                        <!-- Standard Field -->
+                                                        <template if:false={field.isCustom}>
+                                                            <template if:true={field.isPicklist}>
+                                                                <lightning-combobox label={field.label}
+                                                                    value={field.value} options={field.picklistValues}
+                                                                    data-msgid={msg.id} data-key={field.key}
+                                                                    data-property="value" onchange={handleFieldChange}
+                                                                    class="proposal-input">
+                                                                </lightning-combobox>
+                                                            </template>
+                                                            <template if:false={field.isPicklist}>
+                                                                <lightning-input label={field.label} value={field.value}
+                                                                    data-msgid={msg.id} data-key={field.key}
+                                                                    data-property="value" onchange={handleFieldChange}
+                                                                    class="proposal-input">
+                                                                </lightning-input>
+                                                            </template>
+                                                        </template>
+
+                                                        <!-- Custom Field -->
+                                                        <template if:true={field.isCustom}>
+                                                            <div class="custom-field-group">
+                                                                <!-- Field Name Select -->
+                                                                <div class="custom-input-wrapper">
+                                                                    <!-- <label class="custom-label">Field</label> -->
+                                                                    <lightning-combobox label="Field" value={field.name}
+                                                                        options={field.rowOptions} data-msgid={msg.id}
+                                                                        data-key={field.key} data-property="name"
+                                                                        onchange={handleFieldChange}
+                                                                        placeholder="Select Field...">
+                                                                    </lightning-combobox>
+                                                                </div>
+
+                                                                <!-- Value Input (Dynamic) -->
+                                                                <div class="custom-input-wrapper">
+                                                                    <label class="custom-label">Value</label>
+                                                                    <template if:true={field.isPicklist}>
+                                                                        <select class="custom-select"
+                                                                            data-msgid={msg.id} data-key={field.key}
+                                                                            data-property="value"
+                                                                            onchange={handleFieldChange}>
+                                                                            <!-- Current Value Option -->
+                                                                            <template if:true={field.value}>
+                                                                                <option value={field.value} selected>
+                                                                                    {field.value}</option>
+                                                                            </template>
+                                                                            <template if:false={field.value}>
+                                                                                <option value="">Select Value...
+                                                                                </option>
+                                                                            </template>
+
+                                                                            <template for:each={field.picklistValues}
+                                                                                for:item="pv">
+                                                                                <option key={pv.value} value={pv.value}>
+                                                                                    {pv.label}</option>
+                                                                            </template>
+                                                                        </select>
+                                                                    </template>
+                                                                    <template if:false={field.isPicklist}>
+                                                                        <input type="text" class="custom-input"
+                                                                            placeholder="Enter value"
+                                                                            value={field.value} data-msgid={msg.id}
+                                                                            data-key={field.key} data-property="value"
+                                                                            onchange={handleFieldChange} />
+                                                                    </template>
+                                                                </div>
+                                                            </div>
+                                                        </template>
+                                                    </div>
+                                                </template>
+
+                                                <!-- Add Button -->
+                                                <div class="add-field-container">
+                                                    <button class="add-field-btn" data-id={msg.id}
+                                                        onclick={handleAddField}>
+                                                        + Add New Field
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </template>
+
+                                        <!-- Related Records List -->
+                                        <template if:true={msg.contactCount}>
+                                            <div class="related-records-section">
+                                                <div class="contact-badge">
+                                                    <lightning-icon icon-name="standard:contact"
+                                                        size="xx-small"></lightning-icon>
+                                                    <span>{msg.contactCount} Related Records Found</span>
+                                                </div>
+
+                                            </div>
+                                        </template>
+                                    </div>
+
+                                    <div class="review-footer">
+                                        <!-- Footer Actions -->
+                                        <template if:false={msg.isEditing}>
+                                            <button class="update-btn" data-id={msg.id} onclick={handleToggleEdit}>Edit
+                                                / Update</button>
+                                            <button class="proceed-btn" data-id={msg.id}
+                                                onclick={handleProceed}>Proceed</button>
+                                        </template>
+
+                                        <template if:true={msg.isEditing}>
+                                            <button class="update-btn" data-id={msg.id}
+                                                onclick={handleToggleEdit}>Cancel Edit</button>
+                                            <button class="proceed-btn" data-id={msg.id} onclick={handleProceed}>Proceed
+                                                with Updates</button>
+                                        </template>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+                </div>
+
+                <!-- Input Area -->
+                <div class="chat-input-container">
+                    <lightning-input type="text" placeholder="Type your message..." value={currentMessage}
+                        onchange={handleMessageChange} onkeyup={handleKeyPress} class="message-input"></lightning-input>
+                    <button class="send-button" onclick={sendMessage} disabled={isSending} title="Send Message">
+                        <lightning-icon icon-name="utility:send" alternative-text="Send" size="small"></lightning-icon>
+                    </button>
+                </div>
+            </div>
+        </template>
+    </div>
+</template>

@@ -1,0 +1,42 @@
+﻿python : INFO:mcp_mod
+ule.Salesforcemcp.chr
+omadbutils:ChromaDB 
+Manager initialized 
+successfully
+At line:1 char:1
++ python 
+inspect_chromadb.py 
+2>&1 | Out-File 
+-FilePath 
+chromadb_inspect ...
++ ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: (INFO:mc   
+ p_module...ed su    
+ccessfully:Strin    
+g) [], RemoteExc    
+eption
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+INFO:mcp_module.Sales
+forcemcp.chromadbutil
+s:Retrieved existing 
+fields collection: sa
+lesforce_fields_conta
+ct
+Total Contact fields in ChromaDB: 38
+
+================================================================================
+Field: Start_Date__c
+Description: The date when the contact's employment/role started at the company. CRITICAL FOR FILTERING CURRENTLY WORKING EMPLOYEES: Use this field with End_Date__c to identify active employees. A contact is currently working if: Start_Date__c <= TODAY AND (End_Date__c = null OR End_Date__c >= TODAY). Example SOQL: WHERE Start_Date__c <= TODAY AND (End_Date__c = null OR End_Date__c >= TODAY). This is NOT related to CampaignMember.Status which tracks email campaign engagement.
+================================================================================
+
+================================================================================
+Field: End_Date__c
+Description: The date when the contact's employment/role ends at the company. CRITICAL FOR FILTERING CURRENTLY WORKING EMPLOYEES: If this field is NULL/blank, the contact is still employed (ongoing). If End_Date__c < TODAY, the contact is no longer working. If End_Date__c >= TODAY, they are still employed. To find currently working contacts, use: WHERE (End_Date__c = null OR End_Date__c >= TODAY) AND Start_Date__c <= TODAY. This is NOT related to CampaignMember.Status which tracks email campaign engagement (Sent/Responded/Draft).
+================================================================================
+
